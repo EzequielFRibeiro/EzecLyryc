@@ -1,0 +1,87 @@
+=== COMANDOS PARA GIT ===
+
+git init
+git add .
+git commit -m "Initial commit: CifraPartit MVP completo - Backend + Frontend + 300 testes"
+git remote add origin https://github.com/SEU_USUARIO/cifrapartit-music-transcription.git
+git branch -M main
+git push -u origin main
+
+
+=== COMANDOS PARA VERCEL (Frontend) ===
+
+cd frontend
+npm i -g vercel
+vercel login
+vercel --prod
+
+
+=== COMANDOS PARA RAILWAY (Backend) ===
+
+npm i -g @railway/cli
+railway login
+cd backend
+railway init
+railway add --database postgresql
+railway add --database redis
+railway up
+
+
+=== VARIÁVEIS DE AMBIENTE - VERCEL ===
+
+VITE_API_BASE_URL=https://seu-backend.railway.app
+
+
+=== VARIÁVEIS DE AMBIENTE - RAILWAY ===
+
+DATABASE_URL=(auto-gerado pelo Railway)
+REDIS_URL=(auto-gerado pelo Railway)
+SECRET_KEY=gere-uma-chave-secreta-forte-aqui
+S3_BUCKET=seu-bucket-name
+S3_ACCESS_KEY=sua-access-key
+S3_SECRET_KEY=sua-secret-key
+S3_ENDPOINT=https://s3.amazonaws.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=seu-email@gmail.com
+SMTP_PASSWORD=sua-senha-app
+
+
+=== CELERY WORKER (Railway - Novo Serviço) ===
+
+Start Command: celery -A app.celery_app worker --loglevel=info
+(Usar mesmas variáveis de ambiente do backend)
+
+
+=== TESTAR DEPLOY ===
+
+# Frontend
+https://seu-app.vercel.app
+
+# Backend Health Check
+https://seu-backend.railway.app/api/health
+
+# Backend API Docs
+https://seu-backend.railway.app/docs
+
+
+=== GERAR SECRET_KEY ===
+
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+
+
+=== MIGRATIONS (Após Deploy) ===
+
+railway run alembic upgrade head
+
+
+=== LOGS ===
+
+# Railway
+railway logs
+
+# Vercel
+vercel logs
+
+
+PRONTO! Seu app está no ar! 🎉
