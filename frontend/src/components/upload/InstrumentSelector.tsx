@@ -1,7 +1,6 @@
 interface InstrumentSelectorProps {
   value: string
   onChange: (instrument: string) => void
-  preselected?: string
 }
 
 const instruments = [
@@ -15,7 +14,7 @@ const instruments = [
   { value: 'brass', label: 'Metais' }
 ]
 
-export function InstrumentSelector({ value, onChange, preselected }: InstrumentSelectorProps) {
+export function InstrumentSelector({ value, onChange }: InstrumentSelectorProps) {
   return (
     <div className="instrument-selector">
       <label>Instrumento</label>

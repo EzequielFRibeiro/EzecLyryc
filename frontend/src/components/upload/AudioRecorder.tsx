@@ -12,7 +12,7 @@ export function AudioRecorder({ onRecordingComplete }: AudioRecorderProps) {
   const [duration, setDuration] = useState(0)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const chunksRef = useRef<Blob[]>([])
-  const timerRef = useRef<NodeJS.Timeout>()
+  const timerRef = useRef<number>()
 
   useEffect(() => {
     return () => {
